@@ -30,8 +30,10 @@ def custom_len(input_list):
         8
 
     """
-
-    return 0
+    count = 0
+    for item in input_list:
+        count += 1
+    return count
 
 
 # For the next four exercises, you'll need to be clever and think about ways
@@ -59,7 +61,8 @@ def custom_append(input_list, value):
 
     """
 
-    pass
+    new = [input_list[-1], value]
+    input_list[-1:] = new
 
 
 def custom_extend(input_list, second_list):
@@ -77,9 +80,8 @@ def custom_extend(input_list, second_list):
         True
 
     """
-
-    pass
-
+    second_list[:0] = input_list[-2:]
+    input_list[-2:] = second_list
 
 def custom_insert(input_list, index, value):
     """Insert value at index in the list.
@@ -96,8 +98,7 @@ def custom_insert(input_list, index, value):
 
     """
 
-    pass
-
+    input_list[index:index] = [value]
 
 def custom_remove(input_list, value):
     """Remove the first item of the value in list.
@@ -114,8 +115,15 @@ def custom_remove(input_list, value):
         True
 
     """
+    index = 0 
+    for n in input_list:
+        if n == value:
+            break 
+        index += 1
 
-    pass
+    input_list[index:index+1] = []
+
+    
 
 
 def custom_pop(input_list):
@@ -133,8 +141,9 @@ def custom_pop(input_list):
         ['Jan', 'Feb']
 
     """
-
-    return None
+    last = input_list[-1]
+    input_list[-1:] = []
+    return last 
 
 
 def custom_index(input_list, value):
@@ -149,7 +158,9 @@ def custom_index(input_list, value):
         1
 
     """
-
+    for i, item in enumerate(input_list):
+        if item == value:
+            return i
     return 0
 
 
@@ -165,8 +176,12 @@ def custom_count(input_list, value):
         2
 
     """
+    count = 0
+    for item in input_list:
+        if item == value:
+            count += 1
 
-    return 0
+    return count
 
 
 def custom_reverse(input_list):
@@ -185,7 +200,12 @@ def custom_reverse(input_list):
 
     """
 
-    pass
+    middle = (custom_len(input_list)//2)
+
+    for index in range(0 , middle):
+        first = input_list[index]
+        input_list[index] = input_list[len(input_list) - 1 - index]
+        input_list[len(input_list) - 1 - index] = first 
 
 
 def custom_contains(input_list, value):
@@ -204,8 +224,11 @@ def custom_contains(input_list, value):
         True
 
     """
+    for item in input_list:
+        if item == value:
+            return True
 
-    return None
+    return False 
 
 
 def custom_equality(some_list, another_list):
@@ -223,8 +246,11 @@ def custom_equality(some_list, another_list):
         False
 
     """
+    for i, item in enumerate(some_list):
+        if some_list[i] != another_list[i]:
+            return False
+    return True
 
-    return None
 
 
 ##############################################################################
