@@ -161,7 +161,6 @@ def custom_index(input_list, value):
     for i, item in enumerate(input_list):
         if item == value:
             return i
-    return 0
 
 
 def custom_count(input_list, value):
